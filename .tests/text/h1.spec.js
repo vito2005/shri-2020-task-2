@@ -1,4 +1,4 @@
-import linter from '../../build/linter'
+import linter from '../../'
 import assert from 'assert'
 import { expect } from 'chai'
 
@@ -35,15 +35,15 @@ describe('h1 tests', () => {
         "code": "TEXT.SEVERAL_H1",
         "error": "Заголовок первого уровня на странице должен быть единственным",
         "location":  {
-          "end":  {
-            "column": 28,
-            "line": 9,
-          },
           "start":  {
             "column": 13,
-            "line": 9,
+            "line": 9
           },
-        },
+          "end":  {
+            "column": 28,
+            "line": 9
+          }
+        }
     }])
     })
 })
