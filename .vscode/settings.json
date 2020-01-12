@@ -1,0 +1,9 @@
+{
+    "eslint.enable": true,
+    "eslint.run": "onType",
+    "editor.codeActionsOnSave": {
+    "source.fixAll": true
+    },
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1000
+}
