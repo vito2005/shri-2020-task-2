@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "npx webpack --config webpack.config.js",
-    "test": "mocha --require babel-polyfill --require @babel/register '.tests/**/*.spec.js'"
+    "test": "mocha --require @babel/register '.tests/**/*.spec.js'"
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "@babel/node": "^7.8.0",
     "@babel/preset-env": "^7.8.0",
     "@babel/register": "^7.8.0",
+    "babel-loader": "^8.0.6",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",

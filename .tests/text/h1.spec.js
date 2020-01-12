@@ -1,4 +1,4 @@
-import linter from '../..';
+import linter from '../../build/linter'
 import assert from 'assert'
 import { expect } from 'chai'
 
@@ -28,11 +28,10 @@ const invalid = `{
 
 describe('h1 tests', () => {
     it("Return empty Array if it's has no errors", () => {
-      expect(linter(valid)).to.be.empty
+      expect(lint(valid)).to.be.empty
     })
     it("Return Array with Error", () => {
-      console.log(linter(invalid))
-      expect(linter(invalid)).to.have.deep.members([{
+      expect(lint(invalid)).to.have.deep.members([{
         "code": "TEXT.SEVERAL_H1",
         "error": "Заголовок первого уровня на странице должен быть единственным",
         "location":  {
