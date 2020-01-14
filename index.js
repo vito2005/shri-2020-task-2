@@ -2,13 +2,14 @@ import jsonToAst from 'json-to-ast'
 import linters from './linters'
 import { initLogs } from './constants.js'
 import { createLog, copy, hasLog } from './methods.js'
+import { walk } from 'estree-walker'
 
 function lint (jsonString) {
   const ast = jsonToAst(jsonString)
   const logs = parse(ast)
   const errors = logs.reduce((acc, { errors }) => [...acc, ...errors], [])
 
-  return errors
+  return errors || []
 }
 
 if (global) {
@@ -18,7 +19,10 @@ if (global) {
 }
 
 function parse (ast, logs = initLogs) {
-  const { loc, children } = ast
+  const { loc, children, type } = ast
+  if (type === 'Array') {
+    return children.reduce((acc, child) => parse(child, acc), copy(logs));
+  }
   const block = children.find(node => node.key.value === 'block')
   const content = children.find(node => node.key.value === 'content')
   const elem = children.find(node => node.key.value === 'elem')
@@ -42,5 +46,3 @@ function parse (ast, logs = initLogs) {
 
   return lintedLogs
 }
-
-export default lint

@@ -42,5 +42,8 @@
     "nodemon": "^2.0.2",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "estree-walker": "^1.0.1"
   }
 }
