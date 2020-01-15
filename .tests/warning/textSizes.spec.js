@@ -1,5 +1,27 @@
 import linter from '../../'
 import { expect } from 'chai'
+const valid = `{
+    "block": "warning",
+    "content": [
+        {
+            "block": "placeholder",
+            "mods": { "size": "m" }
+        },
+        {
+            "elem": "content",
+            "content": [
+                {
+                    "block": "text",
+                    "mods": { "size": "m" }
+                },
+                {
+                    "block": "text",
+                    "mods": { "size": "m" }
+                }
+            ]
+        }
+    ]
+}`
 
 const invalid = `{
     "block": "warning",
@@ -27,6 +49,9 @@ const invalid = `{
 
 
 describe('warningTextSizes tests', () => {
+    it("Return empty Array if it's has no errors", () => {
+        expect(lint(valid)).to.be.empty
+      })
     it("Return Array with Error", () => {
         expect(lint(invalid)).to.have.deep.members([{
             "code": "WARNING.TEXT_SIZES_SHOULD_BE_EQUAL",
