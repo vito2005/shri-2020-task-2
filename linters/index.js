@@ -14,5 +14,5 @@ export default [
   {
     nodeName: 'warning',
     validator: buttonSize
-  },
+  }
 ]
