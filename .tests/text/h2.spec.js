@@ -11,7 +11,7 @@ const valid = `[
       "block": "text",
       "mods": { "type": "h2" }
   }
-]`;
+]`
 const invalid = `[
   {
       "block": "text",
