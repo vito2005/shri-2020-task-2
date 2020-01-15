@@ -13,8 +13,3 @@ const h2 = {
 export const initLogs = [h1, h2]
 
 export const sizes = ['xxxs', 'xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl', 'xxxl', 'xxxxl']
-
-export const nodeNames = {
-  WARNING: 'warning',
-  TEXT: 'text'
-}
