@@ -2,6 +2,7 @@ import h1 from './text/h1'
 import textSizes from './warning/textSizes'
 import buttonSize from './warning/buttonSize'
 import buttonPosition from './warning/buttonPosition'
+import placeholderSizes from './warning/placeholderSizes'
 
 export default [
   {
@@ -19,5 +20,9 @@ export default [
   {
     nodeName: 'warning',
     validator: buttonPosition
+  },
+  {
+    nodeName: 'warning',
+    validator: placeholderSizes
   }
 ]
