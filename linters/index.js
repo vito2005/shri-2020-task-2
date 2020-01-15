@@ -1,6 +1,7 @@
 import h1 from './text/h1'
 import textSizes from './warning/textSizes'
 import buttonSize from './warning/buttonSize'
+import buttonPosition from './warning/buttonPosition'
 
 export default [
   {
@@ -14,5 +15,9 @@ export default [
   {
     nodeName: 'warning',
     validator: buttonSize
+  },
+  {
+    nodeName: 'warning',
+    validator: buttonPosition
   }
 ]
