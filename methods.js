@@ -62,7 +62,7 @@ export const mergeError = (log, error) => {
 
   return { ...log, errors }
 }
-export const getLocation = node => {
+export const getLoc = node => {
   return {
     start: {
       column: node.loc.start.column,

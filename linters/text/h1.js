@@ -1,4 +1,4 @@
-import { getMod, mergeData, mergeError, getLocation } from '../../methods.js'
+import { getMod, mergeData, mergeError, getLoc } from '../../methods.js'
 
 const error = {
   code: 'TEXT.SEVERAL_H1',
@@ -11,7 +11,7 @@ export default ({ log, node, mods, ast }) => {
       const type = getMod(mods, 'type')
       if (type && type.value && type.value.value === 'h1') {
         if (log.data.h1) {
-          return mergeError(log, { location: getLocation(ast), ...error })
+          return mergeError(log, { location: getLoc(ast), ...error })
         }
         return mergeData(log, { h1: true })
       }
