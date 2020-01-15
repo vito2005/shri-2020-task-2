@@ -32,7 +32,7 @@ function parse (ast, logs = initLogs) {
     .filter(({ nodeName }) => logs.some(log => log.nodeName === nodeName))
 
   const lintedLogs = relevantLinters.reduce((acc, { validator }) => {
-    return acc.map(log => validator({ log, content, node, mods }))
+    return acc.map(log => validator({ log, content, node, mods, ast }))
   }, copy(logs))
 
   if (content && !hasLog(lintedLogs, loc)) {

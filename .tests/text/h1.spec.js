@@ -57,6 +57,49 @@ const invalid = `{
         }
     ]
 }`
+const invalid1 = `{
+  "block": "grid",
+  "elem": "fraction",
+  "elemMods": {
+      "m-col": 8
+  },
+  "content": [
+      {
+          "block": "text",
+          "mods": {
+              "size": "xxl",
+              "view": "primary",
+              "type": "h1"
+          },
+          "content": [
+              {
+                  "block": "text",
+                  "elem": "word",
+                  "elemMods": {
+                      "width": "l"
+                  }
+              }
+          ]
+      },
+      {
+        "block": "text",
+        "mods": {
+            "size": "xxl",
+            "view": "primary",
+            "type": "h1"
+        },
+        "content": [
+            {
+                "block": "text",
+                "elem": "word",
+                "elemMods": {
+                    "width": "l"
+                }
+            }
+        ]
+    }
+  ]
+}`
 
 
 describe('h1 tests', () => {
@@ -75,12 +118,28 @@ describe('h1 tests', () => {
         "error": "Заголовок первого уровня на странице должен быть единственным",
         "location":  {
           "start":  {
-            "column": 13,
-            "line": 9
+            "column": 9,
+            "line": 8
           },
           "end":  {
-            "column": 28,
-            "line": 9
+            "column": 10,
+            "line": 11
+          }
+        }
+    }])
+    })
+    it("Return Array with Error", () => {
+      expect(lint(invalid1)).to.have.deep.members([{
+        "code": "TEXT.SEVERAL_H1",
+        "error": "Заголовок первого уровня на странице должен быть единственным",
+        "location":  {
+          "start":  {
+            "column": 7,
+            "line": 25
+          },
+          "end":  {
+            "column": 6,
+            "line": 41
           }
         }
     }])
