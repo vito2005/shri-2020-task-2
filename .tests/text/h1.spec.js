@@ -97,7 +97,7 @@ const invalid1 = `{
                 }
             }
         ]
-    }
+      }
   ]
 }`
 
@@ -138,7 +138,7 @@ describe('h1 tests', () => {
             "line": 25
           },
           "end":  {
-            "column": 6,
+            "column": 8,
             "line": 41
           }
         }

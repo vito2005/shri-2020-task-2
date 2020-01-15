@@ -7,7 +7,7 @@ const error = {
 
 export default ({ log, node, mods, ast }) => {
   if (log.nodeName === 'h1') {
-    if (node.value.value === 'text') {
+    if (node && node.value && node.value.value === 'text') {
       const type = getMod(mods, 'type')
       if (type && type.value && type.value.value === 'h1') {
         if (log.data.h1) {
