@@ -10,7 +10,7 @@ export default ({ log, node, mods, ast }) => {
     if (node && node.value && node.value.value === 'text') {
       const type = getMod(mods, 'type')
       if (type && type.value && type.value.value === 'h1') {
-        if (log.data.h1) {
+        if (log && log.data && log.data.h1) {
           return mergeError(log, { location: getLoc(ast), ...error })
         }
         return mergeData(log, { h1: true })

@@ -7,15 +7,15 @@ const error = {
 
 export default ({ log, node, mods, ast }) => {
   if (log.nodeName === 'h3') {
-    if (node && node.value.value === 'text') {
+    if (node && node.value && node.value.value === 'text') {
       const type = getMod(mods, 'type')
-      if (type && type.value.value === 'h3') {
+      if (type && type.value && type.value.value === 'h3') {
         return mergeData(log, { h3: ast })
       }
-      if (type && type.value.value === 'h2' && log.data.h3) {
+      if (type && type.value.value === 'h2' && log.data && log.data.h3) {
         return mergeError(log, { ...error, location: getLoc(log.data.h3) })
       }
-      if (type && type.value.value === 'h1' && log.data.h3) {
+      if (type && type.value.value === 'h1' && log.data && log.data.h3) {
         return mergeError(log, { ...error, location: getLoc(log.data.h3) })
       }
     }

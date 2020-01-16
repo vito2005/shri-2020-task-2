@@ -66,12 +66,12 @@ export const mergeError = (log, error) => {
 export const getLoc = node => {
   return {
     start: {
-      column: node.loc.start.column,
-      line: node.loc.start.line
+      column: node.loc && node.loc.start.column,
+      line: node.loc && node.loc.start.line
     },
     end: {
-      column: node.loc.end.column,
-      line: node.loc.end.line
+      column: node.loc && node.loc.end.column,
+      line: node.loc && node.loc.end.line
     }
   }
 }
