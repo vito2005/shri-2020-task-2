@@ -4,8 +4,8 @@ const error = {
   error: 'Тексты в блоке warning должны быть одного размера'
 }
 
-export default ({ log, node, mods }) => {
-  if (log.nodeName === 'warning') {
+export default ({ log, node, mods, parent }) => {
+  if (log.nodeName === 'warning' && parent === 'warning') {
     if (node && node.value && node.value.value === 'text') {
       const size = getMod(mods, 'size')
       if (!log.data.textSize && size && size.value && size.value.value) {

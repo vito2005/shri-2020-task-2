@@ -5,10 +5,9 @@ const error = {
   error: 'Размер кнопки блока warning должен быть на 1 шаг больше эталонного'
 }
 
-export default ({ log, node, mods, ast }) => {
-  if (log.nodeName === 'warning') {
+export default ({ log, node, mods, ast, parent }) => {
+  if (log.nodeName === 'warning' && parent === 'warning') {
     const { buttonSize } = log.data
-
     const size = getMod(mods, 'size')
 
     if (node.value.value === 'text' && !buttonSize && size) {

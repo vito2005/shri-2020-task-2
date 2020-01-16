@@ -16,10 +16,10 @@ if (global) {
   window.lint = lint
 }
 
-function parse (ast, logs = initLogs) {
+function parse (ast, logs = initLogs, parent) {
   const { loc, children, type } = ast
   if (type === 'Array') {
-    return children.reduce((acc, child) => parse(child, acc), copy(logs))
+    return children.reduce((acc, child) => parse(child, acc, parent), copy(logs))
   }
   const block = children && children.find(node => node.key.value === 'block')
   const content = children && children.find(node => node.key.value === 'content')
@@ -31,18 +31,29 @@ function parse (ast, logs = initLogs) {
   const relevantLinters = linters
     .filter(({ nodeName }) => logs.some(log => log.nodeName === nodeName))
 
+  if (node && node.value && node.value.value === 'warning') {
+    parent = 'warning'
+  }
   const lintedLogs = relevantLinters.reduce((acc, { validator }) => {
-    return acc.map(log => validator({ log, content, node, mods, ast, elemMods }))
+    return acc.map(log => validator({ log, content, node, mods, ast, elemMods, parent }))
   }, copy(logs))
 
   if (content && !hasLog(lintedLogs, loc)) {
     const log = createLog({ nodeName: node && node.value && node.value.value, loc, mods })
+
+    if (content.value.type === 'Object') {
+      return parse(content.value, copy([...lintedLogs, log]), parent)
+    }
+
     try {
-      return (content.value && content.value.children && content.value.children.length &&
-      content.value.children.reduce((acc, child) => {
-        return parse(child, acc)
-      }, copy([...lintedLogs, log]))) || lintedLogs
-    } catch (e) {
+      const newLogs = copy([...lintedLogs, log])
+
+      if (content.value.children && content.value.children.length) {
+        return content.value.children.reduce((acc, child) => {
+          return parse(child, acc, parent)
+        }, newLogs)
+      }
+    } catch {
       return lintedLogs
     }
   }

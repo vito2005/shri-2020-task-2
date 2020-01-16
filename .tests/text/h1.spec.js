@@ -1,8 +1,8 @@
 import linter from '../../'
 import assert from 'assert'
 import { expect } from 'chai'
-import data from './../../data/product.json'
-
+import productData from './../../data/product.json'
+import indexData from './../../data/index.json'
 const valid = `{
     "block": "warning",
     "content": [
@@ -114,7 +114,10 @@ describe('h1 tests', () => {
       expect(lint(valid2)).to.be.empty
     })
     it("Return empty Array if it's has no errors", () => {
-      expect(lint(JSON.stringify(data))).to.be.empty
+      expect(lint(JSON.stringify(productData))).to.be.empty
+    })
+    it("Return empty Array if it's has no errors", () => {
+      expect(lint(JSON.stringify(indexData))).to.be.empty
     })
     it("Return Array with Error", () => {
       expect(lint(invalid)).to.have.deep.members([{
