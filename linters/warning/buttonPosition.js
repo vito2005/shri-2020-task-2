@@ -4,8 +4,8 @@ const error = {
   error: 'Блок button в блоке warning не может находиться перед блоком placeholder на том же или более глубоком уровне вложенности'
 }
 
-export default ({ log, node, ast }) => {
-  if (log.nodeName === 'warning') {
+export default ({ log, node, ast, parent }) => {
+  if (log.nodeName === 'warning' && parent === 'warning') {
     if (node.value.value === 'button') {
       return mergeData(log, { buttonPosition: getLoc(node.value) })
     }

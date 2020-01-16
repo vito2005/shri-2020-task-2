@@ -20,6 +20,7 @@ const invalid = `{
 
 describe('warningButtonPosition tests', () => {
     it("Return empty Array if it's has no errors", () => {
+        console.log('lint(valid)', lint(valid))
         expect(lint(valid)).to.be.empty
       })
     it("Return Array with Error", () => {

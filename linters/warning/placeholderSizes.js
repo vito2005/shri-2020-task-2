@@ -4,8 +4,8 @@ const error = {
   error: 'Допустимые размеры для блока placeholder в блоке warning: s, m, l'
 }
 
-export default ({ log, node, mods }) => {
-  if (log.nodeName === 'warning') {
+export default ({ log, node, mods, parent }) => {
+  if (log.nodeName === 'warning' && parent === 'warning') {
     if (node.value.value === 'placeholder') {
       const size = getMod(mods, 'size')
       if (size && !['s', 'm', 'l'].includes(size.value.value)) {
