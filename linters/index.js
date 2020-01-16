@@ -5,6 +5,7 @@ import buttonPosition from './warning/buttonPosition'
 import placeholderSizes from './warning/placeholderSizes'
 import h2 from './text/h2'
 import h3 from './text/h3'
+import blocks from './blocks/blocks'
 
 export default [
   {
@@ -34,5 +35,9 @@ export default [
   {
     nodeName: 'warning',
     validator: placeholderSizes
+  },
+  {
+    nodeName: 'grid',
+    validator: blocks
   }
 ]

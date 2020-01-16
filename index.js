@@ -26,17 +26,18 @@ function parse (ast, logs = initLogs) {
   const content = children.find(node => node.key.value === 'content')
   const elem = children.find(node => node.key.value === 'elem')
   const mods = children.find(node => node.key.value === 'mods')
+  const elemMods = children.find(node => node.key.value === 'elemMods')
   const node = elem || block
 
   const relevantLinters = linters
     .filter(({ nodeName }) => logs.some(log => log.nodeName === nodeName))
 
   const lintedLogs = relevantLinters.reduce((acc, { validator }) => {
-    return acc.map(log => validator({ log, content, node, mods, ast }))
+    return acc.map(log => validator({ log, content, node, mods, ast, elemMods }))
   }, copy(logs))
 
   if (content && !hasLog(lintedLogs, loc)) {
-    const log = createLog({ nodeName: node.value.value, loc })
+    const log = createLog({ nodeName: node.value.value, loc, mods })
 
     return content.value.children.reduce((acc, child) => {
       return parse(child, acc)

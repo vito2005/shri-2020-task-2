@@ -5,7 +5,7 @@ export const getMod = (mods, modName) => {
 }
 export const copy = (array) => JSON.parse(JSON.stringify(array))
 
-export const createLog = ({ nodeName, loc }) => {
+export const createLog = ({ nodeName, loc, mods }) => {
   if (!nodeName) {
     throw new Error('HAS_NO_NODE_NAME')
   }
@@ -14,6 +14,7 @@ export const createLog = ({ nodeName, loc }) => {
     data: {},
     errors: [],
     nodeName,
+    mods,
     location: {
       start: {
         column: loc.start.column,
