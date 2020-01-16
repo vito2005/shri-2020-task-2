@@ -22,11 +22,11 @@ function parse (ast, logs = initLogs) {
   if (type === 'Array') {
     return children.reduce((acc, child) => parse(child, acc), copy(logs))
   }
-  const block = children.find(node => node.key.value === 'block')
-  const content = children.find(node => node.key.value === 'content')
-  const elem = children.find(node => node.key.value === 'elem')
-  const mods = children.find(node => node.key.value === 'mods')
-  const elemMods = children.find(node => node.key.value === 'elemMods')
+  const block = children && children.find(node => node.key.value === 'block')
+  const content = children && children.find(node => node.key.value === 'content')
+  const elem = children && children.find(node => node.key.value === 'elem')
+  const mods = children && children.find(node => node.key.value === 'mods')
+  const elemMods = children && children.find(node => node.key.value === 'elemMods')
   const node = elem || block
 
   const relevantLinters = linters

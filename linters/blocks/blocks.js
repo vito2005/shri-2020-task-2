@@ -6,7 +6,7 @@ const error = {
 }
 const marketingBlocks = ['commercial', 'offer']
 
-export default ({ log, node, mods, content, elemMods, ast }) => {
+export default ({ log, node, content, elemMods, ast }) => {
   if (log.nodeName === 'grid' && node && node.value.value === 'fraction') {
     const size = getMod(log.mods, 'm-columns')
     const sizeValue = size && Number(size.value.value)

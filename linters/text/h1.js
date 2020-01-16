@@ -17,6 +17,5 @@ export default ({ log, node, mods, ast }) => {
       }
     }
   }
-
   return log
 }
