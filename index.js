@@ -40,7 +40,7 @@ function parse (ast, logs = initLogs) {
   }, copy(logs))
 
   if (content && !hasLog(lintedLogs, loc)) {
-    const log = createLog({ nodeName: node.value.value, loc, mods })
+    const log = createLog({ nodeName: node && node.value && node.value.value, loc, mods })
 
     return content.value.children.reduce((acc, child) => {
       return parse(child, acc)
