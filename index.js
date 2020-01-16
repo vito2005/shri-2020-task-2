@@ -4,11 +4,14 @@ import { initLogs } from './constants.js'
 import { createLog, copy, hasLog } from './methods.js'
 
 function lint (jsonString) {
-  const ast = jsonToAst(jsonString)
-  const logs = parse(ast)
-  const errors = logs.reduce((acc, { errors }) => [...acc, ...errors], [])
-
-  return errors || []
+  try {
+    const ast = jsonToAst(jsonString)
+    const logs = parse(ast)
+    const errors = logs && logs.reduce((acc, { errors }) => [...acc, ...errors], [])
+    return errors || []
+  } catch (e) {
+    return []
+  }
 }
 
 if (global) {
