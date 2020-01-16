@@ -4,14 +4,10 @@ import { initLogs } from './constants.js'
 import { createLog, copy, hasLog } from './methods.js'
 
 function lint (jsonString) {
-  try {
-    const ast = jsonToAst(jsonString)
-    const logs = parse(ast)
-    const errors = logs && logs.reduce((acc, { errors }) => [...acc, ...errors], [])
-    return errors || []
-  } catch (e) {
-    return []
-  }
+  const ast = jsonToAst(jsonString)
+  const logs = parse(ast)
+  const errors = logs && logs.reduce((acc, { errors }) => [...acc, ...errors], [])
+  return errors || []
 }
 
 if (global) {
@@ -41,11 +37,13 @@ function parse (ast, logs = initLogs) {
 
   if (content && !hasLog(lintedLogs, loc)) {
     const log = createLog({ nodeName: node && node.value && node.value.value, loc, mods })
-
-    return content.value.children.reduce((acc, child) => {
-      return parse(child, acc)
-    }, copy([...lintedLogs, log]))
+    try {
+      return content.value.children.reduce((acc, child) => {
+        return parse(child, acc)
+      }, copy([...lintedLogs, log]))
+    } catch (e) {
+      return lintedLogs
+    }
   }
-
   return lintedLogs
 }
