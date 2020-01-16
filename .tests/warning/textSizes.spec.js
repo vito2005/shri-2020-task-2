@@ -64,7 +64,7 @@ describe('warningTextSizes tests', () => {
         }])
       })
       it("Return empty Array if it's has no errors", () => {
-        // console.log('lint', lint(JSON.stringify(indexData)))
+        console.log('lint', lint(JSON.stringify(indexData)))
         expect(lint(JSON.stringify(indexData))).to.be.empty
       })
 })
