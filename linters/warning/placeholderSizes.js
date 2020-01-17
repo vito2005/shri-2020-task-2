@@ -6,7 +6,7 @@ const error = {
 
 export default ({ log, node, mods, parent }) => {
   if (log.nodeName === 'warning' && parent === 'warning') {
-    if (node.value.value === 'placeholder') {
+    if (node && node.value && node.value.value === 'placeholder') {
       const size = getMod(mods, 'size')
       if (size && !['s', 'm', 'l'].includes(size.value.value)) {
         return mergeError(log, { ...error, location: getLoc(node.value) })

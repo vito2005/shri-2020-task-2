@@ -10,11 +10,11 @@ export default ({ log, node, mods, ast, parent }) => {
     const { buttonSize } = log.data
     const size = getMod(mods, 'size')
 
-    if ((node.value.value === 'text' || node.value.value === 'placeholder') && !buttonSize && size) {
+    if (((node && node.value && node.value.value === 'text') || (node && node.value && node.value.value === 'placeholder')) && !buttonSize && size) {
       return mergeData(log, { buttonSize: sizes[sizes.findIndex(s => s === size.value.value) + 1] })
     }
 
-    if (node.value.value === 'button' && buttonSize && buttonSize !== size.value.value) {
+    if (node && node.value && node.value.value === 'button' && buttonSize && buttonSize !== size.value.value) {
       return mergeError(log, { ...error, location: getLoc(ast) })
     }
   }

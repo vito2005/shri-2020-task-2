@@ -6,11 +6,11 @@ const error = {
 
 export default ({ log, node, ast, parent }) => {
   if (log.nodeName === 'warning' && parent === 'warning') {
-    if (node.value.value === 'button') {
-      return mergeData(log, { buttonPosition: getLoc(node.value) })
+    if (node && node.value && node.value.value === 'button') {
+      return mergeData(log, { buttonPosition: getLoc(ast) })
     }
 
-    if (node.value.value === 'placeholder' && log.data.buttonPosition) {
+    if (node && node.value && node.value.value === 'placeholder' && log.data.buttonPosition) {
       return mergeError(log, { ...error, location: log.data.buttonPosition })
     }
   }
